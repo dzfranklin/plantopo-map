@@ -6,7 +6,6 @@ all: \
 	example_data/openmaptiles.pmtiles \
 	cmd/admin/vendor/maputnik \
 	$(SPRITE_TARGETS) \
-	terrain/out/terrain.pmtiles \
 	fonts
 
 .PHONY: clean
@@ -33,14 +32,6 @@ clean-sprites:
 $(SPRITE_TARGETS) &: $(wildcard icons/source/*)
 	docker build --load -t icons-builder ./icons
 	docker run --rm --mount type=bind,src=$(shell pwd)/icons,dst=/icons icons-builder
-
-.PHONY: clean-terrain
-clean-terrain:
-	rm -rf terrain/out
-
-terrain/out/terrain.pmtiles:
-	docker build --load -t terrain-builder ./terrain
-	docker run --rm --mount type=bind,src=$(shell pwd)/terrain/out,dst=/out terrain-builder
 
 .PHONY: clean-fonts
 clean-fonts:
