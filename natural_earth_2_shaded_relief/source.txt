@@ -1,0 +1,1 @@
+From https://github.com/klokantech/naturalearthtiles/tree/gh-pages/tiles/natural_earth_2_shaded_relief.raster
